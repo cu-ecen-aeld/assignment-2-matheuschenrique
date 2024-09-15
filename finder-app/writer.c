@@ -4,7 +4,7 @@
 int main(int argc, char *argv[]) {
 
     openlog("My incredible log", 0, LOG_USER);
-    syslog(LOG_DEBUG, "Writing, %s to %s", argv[2], argv[1]);
+    syslog(LOG_DEBUG, "Writing %s to %s", argv[2], argv[1]);
     
     if (argc != 3) {
         syslog(LOG_ERR, "Wrong number of arguments");

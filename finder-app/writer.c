@@ -3,9 +3,9 @@
 
 int main(int argc, char *argv[]) {
 
-    openlog("My incredible log", LOG_PID, LOG_USER);
-    syslog(LOG_DEBUG, "Writing %s to %s", argv[2], argv[1]);
-
+    openlog("My incredible log", 0, LOG_USER);
+    syslog(LOG_DEBUG, "Writing, %s to %s", argv[2], argv[1]);
+    
     if (argc != 3) {
         syslog(LOG_ERR, "Wrong number of arguments");
         closelog();
@@ -15,9 +15,7 @@ int main(int argc, char *argv[]) {
     char *writefile = argv[1];
     char *writestr = argv[2];
 
-    FILE *pFile;
-    pFile = fopen(writefile, "w");
-
+    FILE *pFile = fopen(writefile, "w");
     if (pFile == NULL) {
         syslog(LOG_ERR, "Error to read file");
         closelog();
@@ -25,7 +23,7 @@ int main(int argc, char *argv[]) {
     }
 
     fputs(writestr, pFile);
-    closelog();
     fclose(pFile);
+    closelog();
     return 0;
 }
